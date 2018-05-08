@@ -76,12 +76,15 @@
       <DependentUpon>Dubuche.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ICrud.cs" />
     <Compile Include="Restaurant.cs">
       <DependentUpon>Dubuche.tt</DependentUpon>
     </Compile>
+    <Compile Include="RestaurantCRUD.cs" />
     <Compile Include="Reviewer.cs">
       <DependentUpon>Dubuche.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReviewerCRUD.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

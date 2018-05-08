@@ -36,13 +36,18 @@ namespace Dubuche.BL
             foreach (var r in newList)
              Console.WriteLine(r.Name);
         }
+
+        public static List<Restaurant> AvgRatingSort(List<Restaurant> rest)
+        {
+            return rest.OrderByDescending(r => r.AvgRating).ToList();
+        }
     }
 }
 //Basic Requirements
 // ## functionality
 //* display top 3 restaurants by average rating
 //* display all restaurants
-//* should allow more than one method of sorting 
+//* should allow more than one method of sorting [done]
 //* display details of a restaurant
 //* display all the reviews of a restaurant
 //* search restaurants(e.g.by partial name), and display all matching results

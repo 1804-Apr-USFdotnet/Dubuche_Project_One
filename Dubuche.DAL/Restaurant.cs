@@ -11,7 +11,8 @@ namespace Dubuche.DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Restaurant
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,19 @@ namespace Dubuche.DAL
         {
             this.Reviewers = new HashSet<Reviewer>();
         }
-    
+        
+        [StringLength(20)]
         public string Name { get; set; }
+        [StringLength(100)]
         public string Address { get; set; }
+        [StringLength(50)]
         public string Website { get; set; }
+        [StringLength(20)]
         public string Phone { get; set; }
+        public double AvgRating { get; set; }
         public int Id { get; set; }
-    
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reviewer> Reviewers { get; set; }
     }

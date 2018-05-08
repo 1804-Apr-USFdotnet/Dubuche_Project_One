@@ -9,11 +9,18 @@ using Dubuche.DAL;
 
 namespace Dubuche.BL
 {
-    public class RestaurantSearch
+    public static class RestaurantSearch
     {
-        public void RestaurantsByName(string name)
+       
+        public static List<Restaurant> Lookup(List<Restaurant> restaurants, string sub)
         {
-            //similar to the sort
+            List<Restaurant> newRestList = new List<Restaurant>();
+            foreach (var one in restaurants)
+            {
+                if (one.Name.ToLower().Contains(sub.ToLower()))
+                    newRestList.Add(one);
+            }
+            return newRestList;
         }
     }
 }
@@ -24,5 +31,5 @@ namespace Dubuche.BL
 //* should allow more than one method of sorting
 //* display details of a restaurant
 //* display all the reviews of a restaurant
-//* search restaurants(e.g.by partial name), and display all matching results
+//* search restaurants(e.g.by partial name), and display all matching results [semi-complete]
 //* quit application
