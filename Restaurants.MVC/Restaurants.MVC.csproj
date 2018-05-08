@@ -193,7 +193,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Restaurant\Index1.cshtml" />
+    <Content Include="Views\Restaurant\Top.cshtml" />
     <Content Include="Views\Restaurant\Details.cshtml" />
     <Content Include="Views\Restaurant\Create.cshtml" />
     <Content Include="Views\Restaurant\Edit.cshtml" />
@@ -204,6 +204,7 @@
     <Content Include="Views\Reviewer\Create.cshtml" />
     <Content Include="Views\Reviewer\Edit.cshtml" />
     <Content Include="Views\Reviewer\Delete.cshtml" />
+    <Content Include="Views\Restaurant\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

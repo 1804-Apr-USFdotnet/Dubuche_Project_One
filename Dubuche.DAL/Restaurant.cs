@@ -20,13 +20,16 @@ namespace Dubuche.DAL
         {
             this.Reviewers = new HashSet<Reviewer>();
         }
-        
+        [Required(ErrorMessage = "Name Required Bro.")]
         [StringLength(20)]
         public string Name { get; set; }
+        [Required]
         [StringLength(100)]
         public string Address { get; set; }
+        [Required]
         [StringLength(50)]
         public string Website { get; set; }
+        [Required]
         [StringLength(20)]
         public string Phone { get; set; }
         public double AvgRating { get; set; }

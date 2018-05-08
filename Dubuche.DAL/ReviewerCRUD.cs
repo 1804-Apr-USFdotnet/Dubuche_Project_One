@@ -18,7 +18,12 @@ namespace Dubuche.DAL
         }
 
         //Display A Restaurant's Review
+        public List<Reviewer>AllReviewers()
+        {
+            var list = _db.Reviewers.ToList();
+            return list;
 
+        }
         public List<Reviewer> DisplayRestaurantReviews(int RestaurantId)
         {
             var list = _db.Restaurants.Find(RestaurantId);

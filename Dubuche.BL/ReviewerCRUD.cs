@@ -15,6 +15,11 @@ namespace Dubuche.BL
         {
             crud = new DAL.ReviewerCRUD();
         }
+
+        public List<Reviewer>AllReviewers()
+        {
+            return crud.AllReviewers();
+        }
         
         public List<Reviewer>DisplayRestaurantReviews(int RestaurantId)
         {

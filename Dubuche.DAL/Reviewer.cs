@@ -15,10 +15,13 @@ namespace Dubuche.DAL
 
     public partial class Reviewer
     {
+        [Required]
         [StringLength(20)]
         public string Name { get; set; }
+        [Required]
         [StringLength(300)]
         public string Comment { get; set; }
+        [Required]
         public int Rating { get; set; }
         public int RestaurantId { get; set; }
         public int Id { get; set; }

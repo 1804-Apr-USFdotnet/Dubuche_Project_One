@@ -16,6 +16,8 @@ namespace Restaurants.MVC.Controllers
             var bl = new Dubuche.BL.RestaurantCRUD();
             //var list = bl.GetAllRestaurants();
             return View(bl.GetAllRestaurants());
+
+            //List<Restaurant> A
         }
 
         // GET: Restaurant/Details/5
@@ -25,6 +27,11 @@ namespace Restaurants.MVC.Controllers
             var x = bl.GetRestaurantById(id);
             return View(x);
         }
+        //public ActionResult Search(GetAllstring Res)
+        //{
+        //    Lookup<res>
+        //}
+
 
         // GET: Restaurant/Create
         public ActionResult Create()

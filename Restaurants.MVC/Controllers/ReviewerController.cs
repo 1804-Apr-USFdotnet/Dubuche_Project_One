@@ -14,7 +14,7 @@ namespace Restaurants.MVC.Controllers
         public ActionResult Index()
         {
             var bl = new Dubuche.BL.ReviewerCRUD();
-            return View();
+            return View(bl.AllReviewers());
         }
 
         // GET: Reviewer/Details/5
