@@ -46,8 +46,6 @@ namespace Dubuche.BL
             crud.UpdateRestaurant(restaurant2);
         }
 
-        
-
         //Delete
 
         public void DeleteRestaurantById(int id)

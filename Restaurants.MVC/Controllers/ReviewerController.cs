@@ -13,13 +13,16 @@ namespace Restaurants.MVC.Controllers
         // GET: Reviewer
         public ActionResult Index()
         {
+            var bl = new Dubuche.BL.ReviewerCRUD();
             return View();
         }
 
         // GET: Reviewer/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var bl = new Dubuche.BL.ReviewerCRUD();
+            var x = bl.DisplayRestaurantReviews(id);
+            return View(x);
         }
 
         // GET: Reviewer/Create
@@ -30,11 +33,13 @@ namespace Restaurants.MVC.Controllers
 
         // POST: Reviewer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Reviewer reviewer)
         {
             try
             {
                 // TODO: Add insert logic here
+                var bl = new Dubuche.BL.ReviewerCRUD();
+                bl.CreateReviewer(reviewer);
 
                 return RedirectToAction("Index");
             }
@@ -47,17 +52,20 @@ namespace Restaurants.MVC.Controllers
         // GET: Reviewer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var bl = new Dubuche.BL.ReviewerCRUD();
+            var x = bl.DisplayRestaurantReviewersById(id);
+            return View(x);
         }
 
         // POST: Reviewer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Reviewer reviewer2)
         {
             try
             {
                 // TODO: Add update logic here
-
+                var bl = new Dubuche.BL.ReviewerCRUD();
+                bl.UpdateReviewers(reviewer2);
                 return RedirectToAction("Index");
             }
             catch
@@ -69,7 +77,8 @@ namespace Restaurants.MVC.Controllers
         // GET: Reviewer/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var bl = new Dubuche.BL.ReviewerCRUD();
+            return View(bl.DisplayRestaurantReviewersById(id));
         }
 
         // POST: Reviewer/Delete/5
@@ -79,7 +88,7 @@ namespace Restaurants.MVC.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                var bl = new Dubuche.BL.ReviewerCRUD();
                 return RedirectToAction("Index");
             }
             catch

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dubuche.DAL;
+
 
 namespace Dubuche.DAL
 {
@@ -17,7 +19,46 @@ namespace Dubuche.DAL
 
         //Display A Restaurant's Review
 
+        public List<Reviewer> DisplayRestaurantReviews(int RestaurantId)
+        {
+            var list = _db.Restaurants.Find(RestaurantId);
+            list.Reviewers.ToList();
+            return list.Reviewers.ToList();
+            
+        }
 
+        //Create Reviewer
+        public void CreateReviewer(Reviewer reviewer)
+        {
+            _db.Reviewers.Add(reviewer);
+            _db.SaveChanges();
+
+        }
+        //Read
+        public Reviewer DisplayRestaurantReviewersById(int id)
+        {
+            var reviewer = _db.Reviewers.Find(id);
+            return reviewer;
+        }
+
+        //Update
+        public void UpdateReviewers(Reviewer reviewer2)
+        {
+            Reviewer reviewer1 = _db.Reviewers.Find(reviewer2.Id);
+            reviewer1.Name = reviewer2.Name;
+            reviewer1.Comment = reviewer2.Comment;
+            reviewer1.Rating = reviewer2.Rating;
+            _db.SaveChanges();
+
+        }
+
+        //Delete
+        public void DeleteReviewerById(int id)
+        {
+            Reviewer reviewer = _db.Reviewers.Find(id);
+            _db.Reviewers.Remove(reviewer);
+            _db.SaveChanges();
+        }
     }
 }
 //Basic Requirements
