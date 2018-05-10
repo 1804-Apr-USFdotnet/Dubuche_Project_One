@@ -13,6 +13,17 @@ namespace Restaurants.MVC.Controllers
     {
         private Logger log;
 
+        //Search
+        public ActionResult Search(string Name)
+        {
+            var bl = new Dubuche.BL.RestaurantCRUD();
+            
+            List<Restaurant> newRestList = new List<Restaurant>();
+            newRestList = bl.GetAllRestaurants();
+            return View (RestaurantSearch.Lookup (newRestList, Name));
+        }
+
+
         // GET: Restaurant
         public ActionResult Index()
         {

@@ -24,8 +24,20 @@
                     <li>@Html.ActionLink("All Restaurants", "Index", "Restaurant")</li>
                     <li>@Html.ActionLink("Reviewers", "Index", "Reviewer")</li>
                     @*<li>@Html.ActionLink("Search Restaurants", "Search", "Restaurants")</li>
-                    <li>@Html.ActionLink("Top Restaurants", "Top", "Restaurant")</li>*@
+            <li>@Html.ActionLink("Top Restaurants", "Top", "Restaurant")</li>*@
                 </ul>
+                <form>
+                    <div>
+                        <input type="search" id="mySearch" name="q"
+                               placeholder="Restaurant Search" required
+                               size="20">
+                        @*//TODO - Ask Nick for help*@
+                        @*@Html.ActionLink("Search", "Search", "Restaurant", ('#mySearch').val(), new { @class = "btn btn-primary btn-large" })*@
+                    
+
+                        <span class="validity"></span>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
