@@ -23,7 +23,7 @@ namespace Dubuche.DAL
         [Required(ErrorMessage = "Name Required Bro.")]
         [StringLength(20)]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Address Required Bro.")]
         [StringLength(100)]
         public string Address { get; set; }
         [Required]

@@ -15,10 +15,10 @@ namespace Dubuche.DAL
 
     public partial class Reviewer
     {
-        [Required]
+        [Required(ErrorMessage = "Name Required Bro.")]
         [StringLength(20)]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Comments Required Bro.")]
         [StringLength(300)]
         public string Comment { get; set; }
         [Required]

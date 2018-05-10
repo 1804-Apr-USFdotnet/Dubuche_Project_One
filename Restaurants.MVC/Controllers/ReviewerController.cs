@@ -5,11 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using Dubuche.DAL;
 using Dubuche.BL;
+using NLog;
 
 namespace Restaurants.MVC.Controllers
 {
     public class ReviewerController : Controller
     {
+        private Logger log;
+
         // GET: Reviewer
         public ActionResult Index()
         {
@@ -21,13 +24,17 @@ namespace Restaurants.MVC.Controllers
         public ActionResult Details(int id)
         {
             var bl = new Dubuche.BL.ReviewerCRUD();
-            var x = bl.DisplayRestaurantReviews(id);
+            var x = bl.DisplayRestaurantReviewersById(id);
             return View(x);
         }
 
         // GET: Reviewer/Create
         public ActionResult Create()
         {
+            
+            var bl = new Dubuche.BL.ReviewerCRUD();
+            var restCrud = new Dubuche.BL.RestaurantCRUD();
+            ViewBag.Rests = restCrud.GetAllRestaurants();
             return View();
         }
 
@@ -36,7 +43,7 @@ namespace Restaurants.MVC.Controllers
         public ActionResult Create(Reviewer reviewer)
         {
             try
-            {
+            {                
                 // TODO: Add insert logic here
                 var bl = new Dubuche.BL.ReviewerCRUD();
                 bl.CreateReviewer(reviewer);
@@ -45,6 +52,7 @@ namespace Restaurants.MVC.Controllers
             }
             catch
             {
+                log = LogManager.GetLogger("mistakes");
                 return View();
             }
         }
@@ -54,6 +62,8 @@ namespace Restaurants.MVC.Controllers
         {
             var bl = new Dubuche.BL.ReviewerCRUD();
             var x = bl.DisplayRestaurantReviewersById(id);
+            var restCrud = new Dubuche.BL.RestaurantCRUD();
+            ViewBag.Rests = restCrud.GetAllRestaurants();
             return View(x);
         }
 
@@ -63,6 +73,7 @@ namespace Restaurants.MVC.Controllers
         {
             try
             {
+                
                 // TODO: Add update logic here
                 var bl = new Dubuche.BL.ReviewerCRUD();
                 bl.UpdateReviewers(reviewer2);
@@ -70,6 +81,7 @@ namespace Restaurants.MVC.Controllers
             }
             catch
             {
+                log = LogManager.GetLogger("mistakes");
                 return View();
             }
         }
@@ -83,17 +95,20 @@ namespace Restaurants.MVC.Controllers
 
         // POST: Reviewer/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Reviewer reviewer)
         {
             try
             {
                 // TODO: Add delete logic here
                 var bl = new Dubuche.BL.ReviewerCRUD();
+                bl.DeleteReviewerById(id);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                log = LogManager.GetLogger("mistakes");
+                log.Error($"[Reviewer Controller] [Delete] Exception thrown: {e.Message}");
+                return RedirectToAction("Index");
             }
         }
     }

@@ -1,10 +1,10 @@
 ﻿@model Dubuche.DAL.Reviewer
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Reviewer</h4>
         <hr />
@@ -36,7 +36,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RestaurantId, "RestaurantId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("RestaurantId", null, htmlAttributes: new { @class = "form-control" })
+                <Select name="RestaurantId">
+                    @{ foreach (var Rest in ViewBag.Rests)
+                        {
+                    <option value="@Rest.Id">@Rest.Name</option>
+                            }
+                        }
+
+                </Select>
                 @Html.ValidationMessageFor(model => model.RestaurantId, "", new { @class = "text-danger" })
             </div>
         </div>

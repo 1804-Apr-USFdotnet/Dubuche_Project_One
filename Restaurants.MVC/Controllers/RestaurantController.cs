@@ -5,16 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using Dubuche.DAL;
 using Dubuche.BL;
+using NLog;
 
 namespace Restaurants.MVC.Controllers
 {
     public class RestaurantController : Controller
     {
+        private Logger log;
+
         // GET: Restaurant
         public ActionResult Index()
         {
             var bl = new Dubuche.BL.RestaurantCRUD();
             //var list = bl.GetAllRestaurants();
+
             return View(bl.GetAllRestaurants());
 
             //List<Restaurant> A
@@ -27,11 +31,6 @@ namespace Restaurants.MVC.Controllers
             var x = bl.GetRestaurantById(id);
             return View(x);
         }
-        //public ActionResult Search(GetAllstring Res)
-        //{
-        //    Lookup<res>
-        //}
-
 
         // GET: Restaurant/Create
         public ActionResult Create()
@@ -53,6 +52,7 @@ namespace Restaurants.MVC.Controllers
             }
             catch
             {
+                log = LogManager.GetLogger("mistakes");
                 return View();
             }
         }
@@ -78,6 +78,7 @@ namespace Restaurants.MVC.Controllers
             }
             catch
             {
+                log = LogManager.GetLogger("mistakes");
                 return View();
             }
         }
@@ -88,11 +89,12 @@ namespace Restaurants.MVC.Controllers
             var bl = new Dubuche.BL.RestaurantCRUD();
             //bl.DeleteRestaurantById(id);
             return View(bl.GetRestaurantById(id));
+         
         }
 
         // POST: Restaurant/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Restaurant restaurant)
         {
             try
             {
@@ -102,9 +104,11 @@ namespace Restaurants.MVC.Controllers
                 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                log = LogManager.GetLogger("mistakes");
+                log.Error($"[Restaurants Controller] [Details] Exception thrown: {e.Message}");
+                return RedirectToAction("Index");
             }
         }
     }
