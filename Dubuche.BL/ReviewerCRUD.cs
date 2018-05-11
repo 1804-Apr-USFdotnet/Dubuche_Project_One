@@ -36,7 +36,6 @@ namespace Dubuche.BL
             crud.CreateReviewer(reviewer);
         }
 
-
         public void UpdateReviewers(Reviewer reviewer2)
         {
             crud.UpdateReviewers(reviewer2);
@@ -52,7 +51,7 @@ namespace Dubuche.BL
 // ## functionality
 //* display top 3 restaurants by average rating
 //* display all restaurants [done]
-//* should allow more than one method of sorting [
+//* should allow more than one method of sorting 
 //* display details of a restaurant [done]
 //* display all the reviews of a restaurant
 //* search restaurants(e.g.by partial name), and display all matching results

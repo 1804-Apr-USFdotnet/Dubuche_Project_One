@@ -11,17 +11,11 @@ namespace Dubuche.DAL
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Reviewer
     {
-        [Required(ErrorMessage = "Name Required Bro.")]
-        [StringLength(20)]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Comments Required Bro.")]
-        [StringLength(300)]
         public string Comment { get; set; }
-        [Required]
         public int Rating { get; set; }
         public int RestaurantId { get; set; }
         public int Id { get; set; }

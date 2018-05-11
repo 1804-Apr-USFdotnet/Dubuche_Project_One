@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @*<script src="~/Scripts/RestaurantSearch.js"></script>*@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -26,18 +27,28 @@
                     @*<li>@Html.ActionLink("Search Restaurants", "Search", "Restaurants")</li>
             <li>@Html.ActionLink("Top Restaurants", "Top", "Restaurant")</li>*@
                 </ul>
-                <form>
-                    <div>
-                        <input type="search" id="mySearch" name="q"
-                               placeholder="Restaurant Search" required
-                               size="20">
-                        @*//TODO - Ask Nick for help*@
-                        @*@Html.ActionLink("Search", "Search", "Restaurant", ('#mySearch').val(), new { @class = "btn btn-primary btn-large" })*@
-                    
+                <br />
+               @using (Html.BeginForm("Search", "Restaurant", FormMethod.Get))
+               {
+                   @Html.TextBox("Name");
+                   <input type="submit" value="Submit" />
+               }
 
-                        <span class="validity"></span>
-                    </div>
-                </form>
+
+                @*<form>
+        <div>
+            <input type="search" id="mySearch" name="q"
+                   placeholder="Restaurant Search" required
+                   size="20">
+            @*//TODO - Ask Nick for help*@
+                @*@Html.ActionLink("Search", "Search", "Restaurant", null, new { @mySearch = Request.QueryString["mysearch"] }, new { @class = "btn btn"})*@
+                @*<button type="button" id="button" class="btn btn" onclick="Search()">Search</button>
+
+                <span class="validity"></span>
+            </div>
+        </form>*@
+
+            @*TODO  USE HTML BEGIN FORM - forget jquery*@
             </div>
         </div>
     </div>
@@ -49,8 +60,11 @@
         </footer>
     </div>
 
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
+
 </html>

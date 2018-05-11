@@ -23,6 +23,10 @@ namespace Restaurants.MVC.Controllers
             return View (RestaurantSearch.Lookup (newRestList, Name));
         }
 
+        //public ActionResult Sort()
+        //{
+
+        //}
 
         // GET: Restaurant
         public ActionResult Index()
