@@ -23,10 +23,41 @@ namespace Restaurants.MVC.Controllers
             return View (RestaurantSearch.Lookup (newRestList, Name));
         }
 
-        //public ActionResult Sort()
-        //{
+        public ActionResult Sort(string sort)
+        {
 
-        //}
+            var bl = new Dubuche.BL.RestaurantCRUD();
+            var list = bl.GetAllRestaurants();
+
+            var sortedList = RestaurantSort.AlphaSorting(Dubuche.BL.RestaurantCRUD.Casting(list));
+            var downSortedList = RestaurantSort.BetaSorting(Dubuche.BL.RestaurantCRUD.Casting(list));
+            var ratedSortedList = RestaurantSort.AvgRatingSort(Dubuche.BL.RestaurantCRUD.Casting(list));
+            var topThreeSorted = RestaurantSort.AvgRatingSort(Dubuche.BL.RestaurantCRUD.Casting(list));
+
+            try
+            {
+                if (sort == "byName")
+                {
+                    sortedList = RestaurantSort.AlphaSorting(Dubuche.BL.RestaurantCRUD.Casting(list));                 
+                }
+                else if (sort == "byRating")
+                {
+                    ratedSortedList = RestaurantSort.AvgRatingSort(Dubuche.BL.RestaurantCRUD.Casting(list));
+                }
+                else if (sort == "topThree")
+                {
+                    topThreeSorted = RestaurantSort.AvgRatingSort(Dubuche.BL.RestaurantCRUD.Casting(list).Take(3).ToList());
+                }
+                return View(sortedList);
+
+            }
+            catch (Exception e)
+            {
+                log = LogManager.GetLogger("mistakes");
+                return RedirectToAction("Index");
+            }
+
+        }
 
         // GET: Restaurant
         public ActionResult Index()

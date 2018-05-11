@@ -21,6 +21,23 @@ namespace Dubuche.DAL
         public List<Restaurant> GetAllRestaurants()
         {
             var list = _db.Restaurants.ToList();
+            if (list.Count == 0)
+            {
+                return list;
+            }               
+
+            foreach (var item in list)
+            {
+                if (item.Reviewers.Count == 0)
+                {
+                    item.Rating = 0;
+
+                }
+                else
+                {
+                    item.Rating = item.Reviewers.Average(r => r.Rating);
+                }
+            };
             return list;
         }
 
@@ -36,7 +53,18 @@ namespace Dubuche.DAL
         //Read
         public Restaurant GetRestaurantById(int id)
         {
+
             var restaurant = _db.Restaurants.Find(id);
+
+            if (restaurant.Reviewers.Count == 0)
+            {
+                restaurant.Rating = 0;
+            }
+            else
+            {
+                restaurant.Rating = restaurant.Reviewers.Average(r => r.Rating);
+            }
+
             return restaurant;
         }
 

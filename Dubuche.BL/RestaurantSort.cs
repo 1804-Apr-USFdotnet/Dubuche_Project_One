@@ -37,10 +37,10 @@ namespace Dubuche.BL
              Console.WriteLine(r.Name);
         }
 
-        //public static List<Restaurant> AvgRatingSort(List<Restaurant> rest)
-        //{
-        //    return rest.OrderByDescending(r => r.AvgRating).ToList();
-        //}
+        public static List<Restaurants> AvgRatingSort(List<Restaurants> rest)
+        {
+            return rest.OrderByDescending(r => r.Rating).ToList();
+        }
     }
 }
 //Basic Requirements

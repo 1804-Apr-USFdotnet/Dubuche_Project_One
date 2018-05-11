@@ -23,7 +23,29 @@ namespace Dubuche.BL
         {
             return crud.GetAllRestaurants();
         }
-          
+
+        public static List<Dubuche.BL.Restaurants> Casting (List<Dubuche.DAL.Restaurant> restaurants)
+        {
+            List<Restaurants> res = new List<Restaurants>();
+
+            foreach (var item in restaurants)
+            {
+                Restaurants rest = new Restaurants()
+                {
+                    Name = item.Name,
+                    Address = item.Address,
+                    Website = item.Website,
+                    Phone = item.Phone,
+                    Rating = item.Rating,
+                    Id = item.Id
+                };
+
+                res.Add(rest);
+            }
+
+            return res;
+
+        }
 
         //Create
 
