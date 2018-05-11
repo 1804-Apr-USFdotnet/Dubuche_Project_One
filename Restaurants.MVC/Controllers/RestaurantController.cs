@@ -27,31 +27,31 @@ namespace Restaurants.MVC.Controllers
         {
 
             var bl = new Dubuche.BL.RestaurantCRUD();
-            var list = bl.GetAllRestaurants();
-
-            var sortedList = RestaurantSort.AlphaSorting(Dubuche.BL.RestaurantCRUD.Casting(list));
-            var downSortedList = RestaurantSort.BetaSorting(Dubuche.BL.RestaurantCRUD.Casting(list));
-            var ratedSortedList = RestaurantSort.AvgRatingSort(Dubuche.BL.RestaurantCRUD.Casting(list));
-            var topThreeSorted = RestaurantSort.AvgRatingSort(Dubuche.BL.RestaurantCRUD.Casting(list));
+            var list = Dubuche.BL.RestaurantCRUD.Casting(bl.GetAllRestaurants());
+            var sortedList = list;
+            //var sortedList = RestaurantSort.AlphaSorting(Dubuche.BL.RestaurantCRUD.Casting(list));
+            //var downSortedList = RestaurantSort.BetaSorting(Dubuche.BL.RestaurantCRUD.Casting(list));
+            //var ratedSortedList = RestaurantSort.AvgRatingSort(Dubuche.BL.RestaurantCRUD.Casting(list));
+            //var topThreeSorted = RestaurantSort.AvgRatingSort(Dubuche.BL.RestaurantCRUD.Casting(list));
 
             try
             {
                 if (sort == "byName")
                 {
-                    sortedList = RestaurantSort.AlphaSorting(Dubuche.BL.RestaurantCRUD.Casting(list));                 
+                    sortedList = RestaurantSort.AlphaSorting(list);                 
                 }
                 else if (sort == "byRating")
                 {
-                    ratedSortedList = RestaurantSort.AvgRatingSort(Dubuche.BL.RestaurantCRUD.Casting(list));
+                    sortedList = RestaurantSort.AvgRatingSort(list);
                 }
                 else if (sort == "topThree")
                 {
-                    topThreeSorted = RestaurantSort.AvgRatingSort(Dubuche.BL.RestaurantCRUD.Casting(list).Take(3).ToList());
+                    sortedList = RestaurantSort.AvgRatingSort(list.Take(3).ToList());
                 }
                 return View(sortedList);
 
             }
-            catch (Exception e)
+            catch
             {
                 log = LogManager.GetLogger("mistakes");
                 return RedirectToAction("Index");
